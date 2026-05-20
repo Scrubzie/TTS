@@ -1,6 +1,46 @@
 {
   "vanguard": {
     "name": "[00ff16]6/6[-] Vanguard Cruiser",
-    "description": ""
+    "base_stats": {
+        "type": "C",
+        "speed": "25cm",
+        "turn": "90°",
+        "shield": "1",
+        "armour": "6+",
+        "turrets": "3"
+    },
+    "base_weapons": [
+        {"type": "Port Weapons Battery", "range": "30cm", "firepower": "5", "arc": "L"},
+        {"type": "Starboard Weapons Battery", "range": "30cm", "firepower": "5", "arc": "R"},
+        {"type": "Prow Torpedoes", "range": "30cm", "firepower": "4", "arc": "F"},
+        {"type": "Prow Launch Bays", "firepower": "1"}
+    ],
+    "base_ordance": [
+        {"type": "Thunderhawks", "range": "20cm"},
+        {"type": "Torpedo", "range": "30cm"}
+    ],
+    "variants": {
+        "SH2_Boarding": {
+            "edit_stats": [{"shield": 2}],
+            "new_ordance": [{"type": "Boarding Torpedo", "range": "30cm"}]
+        },
+        "SH2_Shortburn": {
+            "edit_stats": [{"shield": 2}],
+            "new_ordance": [{"type": "Shortburn Torpedo", "range": "40cm"}]
+        },
+        "SH2_Barrage": {
+            "edit_stats": [{"shield": 2}],
+            "new_ordance": [{"type": "Barrage Bombs", "range": "30cm"}]
+        },
+        "SH1_Boarding": {
+            "new_ordance": [{"type": "Boarding Torpedo", "range": "30cm"}]
+        },
+        "SH1_Shortburn": {
+            "new_ordance": [{"type": "Shortburn Torpedo", "range": "40cm"}]
+        },
+        "SH1_Barrage": {
+            "new_ordance": [{"type": "Barrage Bombs", "range": "30cm"}]
+        }
+    }
   }
 }
