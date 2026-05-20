@@ -11,7 +11,7 @@
     },
     "base_weapons": [
         {"type": "Port Weapons Battery", "range": "30cm", "firepower": "5", "arc": "L"},
-        {"type": "Starboard Weapons Battery", "range": "30cm", "firepower": "5", "arc": "R"},
+        {"type": "Std. Weapons Battery", "range": "30cm", "firepower": "5", "arc": "R"},
         {"type": "Prow Torpedoes", "range": "30cm", "firepower": "4", "arc": "F"},
         {"type": "Prow Launch Bays", "firepower": "1"}
     ],

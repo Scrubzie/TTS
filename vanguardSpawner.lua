@@ -1,52 +1,47 @@
-local shortburn = 0
-local barrage = 0
-local T = "C"
-local SP = "25cm"
-local TN = "90°"
-local SH = 1
-local ARM = "6+"
-local DF = 3
-local torpedoButtonState = 0
-local Torpedo = "Boarding Torpedoes: 30cm"
+local torpedo = "boarding"
+local shield = 1
+local currentShipDB = nil
+local currentVariant = "SH1_Boarding"
 
 function toggleShield()
-    if SH == 1 then
+    if shield == 1 then
         self.editButton({
             index = 1,
-            color = Color(0,1,0)
+            color = Color(0,1,0),
+            hover_color = Color(0,1,0),
+            press_color = Color(0,1,0)
         })
-        SH = 2
+        shield = 2
     else
         self.editButton({
             index = 1,
-            color = Color(1,0,0)
+            color = Color(1,0,0),
+            hover_color = Color(1,0,0),
+            press_color = Color(1,0,0)
         })
-        SH = 1
+        shield = 1
     end
 end
 
 function toggleTorpedo()
-    if torpedoButtonState == 0 then
+    if torpedo == "boarding" then
         self.editButton({
             index = 2,
             label = "Shortburn"
         })
-        torpedoButtonState = 1
-        Torpedo = "Shortburn Torpedoes: 40cm"
-    elseif torpedoButtonState == 1 then
+        torpedo = "shortburn"
+    elseif torpedo == "shortburn" then
         self.editButton({
             index = 2,
             label = "Barrage"
         })
-        torpedoButtonState = 2
-        Torpedo = "Barrage Bombs: 30cm"
-    elseif torpedoButtonState == 2 then
+        torpedo = "barrage"
+    elseif torpedo == "barrage" then
         self.editButton({
             index = 2,
-            label = "Boarding"
+            label = "boarding"
         })
-        torpedoButtonState = 0
-        Torpedo = "Boarding Torpedoes: 30cm"
+        torpedo = "boarding"
     end
 end
 
@@ -79,71 +74,24 @@ function onLoad()
         height = 300,
         font_size = 100
     })
+
+    -- Fetch JSON from hosted database
+    WebRequest.get("https://scrubzie.github.io/TTS/SM_ships.json", function(response)
+        if response.is_error then
+            print("Failed to load ship database: " .. response.error)
+        else
+            local fullDB = JSON.decode(response.text)
+            currentShipDB = fullDB["vanguard"]
+            print("Ship loaded from JSON!")
+        end
+    end)
 end
 
 function spawnVanguard()
     spawnShip("vanguard")
 end
 
-function createDescription()
-    return string.format([[
-    [56f442] T     SP      TN  SH   ARM DF[-]
-    %s   %s   %s  %d      %s    %d
-
-    [e85545]Armament[-]
-    [c6c930]Port Weapons Battery[-]
-    30cm | 5 | [sub][00ff00]L[-][/sub] [sup][ff0000]F[-][/sup] [sub][ff0000]R[-][/sub]
-    [c6c930]Starboard Weapons Battery[-]
-    30cm | 5 | [sub][ff0000]L[-][/sub] [sup][ff0000]F[-][/sup] [sub][00ff00]R[-][/sub]
-    [c6c930]Prow Torpedoes[-]
-    30cm | 4 | [sub][ff0000]L[-][/sub] [sup][00ff00]F[-][/sup] [sub][ff0000]R[-][/sub]
-    [c6c930]Prow Launch Bays[-]
-    30cm | 1 | [sub][ff0000]L[-][/sub] [sup][00ff00]F[-][/sup] [sub][ff0000]R[-][/sub]
-
-    [e85545]Attack Craft[-]
-    Thunderhawks: 20cm
-    Torpedoes: 30cm
-    %s
-
-    [ff00ff]Improved Thrusters[-]
-    Vanguard cruisers add an additional
-    +1D6cm to their speed while on All Ahead Full special
-    orders.
-    ]], T, SP, TN, SH, ARM, DF, Torpedo)
-end
-
-local description = string.format([[
-[56f442] T     SP      TN  SH   ARM DF[-]
-%s   %s   %s  %d      %s    %d
-
-[e85545]Armament[-]
-[c6c930]Port Weapons Battery[-]
-30cm | 5 | [sub][00ff00]L[-][/sub] [sup][ff0000]F[-][/sup] [sub][ff0000]R[-][/sub]
-[c6c930]Starboard Weapons Battery[-]
-30cm | 5 | [sub][ff0000]L[-][/sub] [sup][ff0000]F[-][/sup] [sub][00ff00]R[-][/sub]
-[c6c930]Prow Torpedoes[-]
-30cm | 4 | [sub][ff0000]L[-][/sub] [sup][00ff00]F[-][/sup] [sub][ff0000]R[-][/sub]
-[c6c930]Prow Launch Bays[-]
-30cm | 1 | [sub][ff0000]L[-][/sub] [sup][00ff00]F[-][/sup] [sub][ff0000]R[-][/sub]
-
-[e85545]Attack Craft[-]
-Thunderhawks: 20cm
-%s
-
-[ff00ff]Improved Thrusters[-]
-Vanguard cruisers add an additional
-+1D6cm to their speed while on All Ahead Full special
-orders.
-]], T, SP, TN, SH, ARM, DF, Torpedo)
-
 function spawnShip(shipKey)
-
-    -- local ShipDB = Global.getTable("EscortShipDB")
-    local ShipDB = getShipDB()
-    if not ShipDB then
-        print("ShipDB not ready yet")
-        return
-    end
 
     local bag = getObjectFromGUID("df7627")
     if not bag then
@@ -151,11 +99,7 @@ function spawnShip(shipKey)
         return
     end
 
-    local data = ShipDB[shipKey]
-    if not data then
-        print("Unknown ship: " .. tostring(shipKey))
-        return
-    end
+    local vanguardData = currentShipDB
 
     local pos = self.getPosition()
 
@@ -188,10 +132,10 @@ function spawnShip(shipKey)
                 rotation = self.getRotation()
             })
 
-            cloned.setName(data.name)
+            cloned.setName(currentShipDB["name"])
             cloned.setDescription(createDescription())
 
-            print("Spawned: " .. data.name)
+            print("Spawned: " .. currentShipDB["name"])
 
             -- return template to bag
             bag.putObject(template)
@@ -199,9 +143,91 @@ function spawnShip(shipKey)
     })
 end
 
-function getShipDB()
-    local dbObj = getObjectFromGUID("5d43c3")
-    if dbObj then
-        return dbObj.getTable("EscortShipDB")
+function createDescription()
+
+    local stats = {}
+    local weapons = {}
+    local ordance = {}
+    local description = nil
+    local variant = nil
+
+    for k,v in pairs(currentShipDB["base_stats"] or {}) do
+        stats[k] = v
     end
+
+    for _, o in ipairs(currentShipDB["base_weapons"] or {}) do
+        table.insert(weapons, o)
+    end
+
+    for _, o in ipairs(currentShipDB["base_ordance"] or {}) do
+        table.insert(ordance, o)
+    end
+
+    if shield == 1 and torpedo == "boarding" then
+        variant = currentShipDB["variants"]["SH1_Boarding"] 
+    elseif shield == 1 and torpedo == "shortburn" then
+        variant = currentShipDB["variants"]["SH1_Shortburn"]
+    elseif shield == 1 and torpedo == "barrage" then
+        variant = currentShipDB["variants"]["SH1_Barrage"]
+    elseif shield == 2 and torpedo == "boarding" then
+        variant = currentShipDB["variants"]["SH2_Boarding"]
+    elseif shield == 2 and torpedo == "shortburn" then
+        variant = currentShipDB["variants"]["SH2_Shortburn"]
+    elseif shield == 2 and torpedo == "barrage" then
+        variant = currentShipDB["variants"]["SH2_Barrage"]
+    end
+
+    if variant["edit_stats"] then
+        for _, v in pairs(variant["edit_stats"]) do
+            for k2, v2 in pairs(v) do
+                if stats[k2] then
+                    stats[k2] = v2
+                end
+            end
+        end 
+    end
+
+    if variant["new_ordance"] then
+        for _, v in ipairs(variant["new_ordance"]) do
+            local exists = false
+            for _, o in ipairs(ordance) do
+                if o.type == v.type then
+                    exists = true
+                    break
+                end
+            end
+            if not exists then
+                table.insert(ordance, {
+                    type = v.type,
+                    range = v.range or "",
+                    firepower = v.firepower or "",
+                    arc = v.arc or ""
+                })
+            end
+        end
+    end
+
+    local weaponsText = ""
+    for _, w in ipairs(weapons) do
+        weaponsText = weaponsText .. string.format("%s | %s | %s | %s\n", w.type, w.range or "", w.firepower or "", w.arc or "")
+    end
+
+    local ordnanceText = ""
+    for _, o in ipairs(ordance) do
+        ordnanceText = ordnanceText .. string.format("%s | %s\n", o.type, o.range or "")
+    end
+
+    description = string.format([[
+[56f442]T     SP      TN  SH   ARM DF[-]
+%s   %s   %s  %d      %s    %d
+
+[e85545]Armament[-]
+%s
+
+[e85545]Ordnance[-]
+%s
+    ]], stats.type, stats.speed, stats.turn, stats.shield, stats.armour, stats.turrets, weaponsText, ordnanceText)
+
+    return description
+
 end
