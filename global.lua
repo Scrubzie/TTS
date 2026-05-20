@@ -94,7 +94,12 @@ function onLoad()
                 [c6c930]Weapons Battery[-]
                 30cm | 4 | [sub][00ff00]L[-][/sub] [sup][00ff00]F[-][/sup] [sub][00ff00]R[-][/sub]
             ]]
-        }
+        },
+
+        vanguard = {
+            name = "[00ff16]6/6[-] Space Marine Vanguard Cruiser",
+            description = ""
+        },
     }
     print("Loaded")
 end
