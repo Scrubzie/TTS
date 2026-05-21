@@ -233,13 +233,13 @@
             variant = currentShipDB["variants"]["SH1_Bombard_Weapons"]
         elseif shield == 1 and prow_module == "Bombard" and side_module == "Launchbay" then
             variant = currentShipDB["variants"]["SH1_Bombard_Launchbays"]
-        elseif shield == 1 and prow_module == "Torpedo" and side_module == "Weapons" then
+        elseif shield == 1 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "boarding" then
             variant = currentShipDB["variants"]["SH1_Torpedo_Weapons"]
-        elseif shield == 1 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "shortburn" then
-            variant = currentShipDB["variants"]["SH1_Torpedo_Weapons_barr"]
         elseif shield == 1 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "barrage" then
+            variant = currentShipDB["variants"]["SH1_Torpedo_Weapons_barr"]
+        elseif shield == 1 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "shortburn" then
             variant = currentShipDB["variants"]["SH1_Torpedo_Weapons_shortburn"]
-        elseif shield == 1 and prow_module == "Torpedo" and side_module == "Launchbay" then
+        elseif shield == 1 and prow_module == "Torpedo" and side_module == "Launchbay" and torpedo == "boarding"  then
             variant = currentShipDB["variants"]["SH1_Torpedo_Launchbays"]
         elseif shield == 1 and prow_module == "Torpedo" and side_module == "Launchbay" and torpedo == "barrage" then
             variant = currentShipDB["variants"]["SH1_Torpedo_Launchbays_barr"]
