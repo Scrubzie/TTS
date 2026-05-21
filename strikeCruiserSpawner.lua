@@ -245,6 +245,26 @@
             variant = currentShipDB["variants"]["SH1_Torpedo_Launchbays_barr"]
         elseif shield == 1 and prow_module == "Torpedo" and side_module == "Launchbay" and torpedo == "shortburn" then
             variant = currentShipDB["variants"]["SH1_Torpedo_Launchbays_shortburn"]
+        elseif shield == 2 and prow_module == "Launchbay" and side_module == "Weapons" then
+            variant = currentShipDB["variants"]["SH2_Launchbays_Weapons"]
+        elseif shield == 2 and prow_module == "Launchbay" and side_module == "Launchbay" then
+            variant = currentShipDB["variants"]["SH2_Launchbays_Launchbays"]
+        elseif shield == 2 and prow_module == "Bombard" and side_module == "Weapons" then
+            variant = currentShipDB["variants"]["SH2_Bombard_Weapons"]
+        elseif shield == 2 and prow_module == "Bombard" and side_module == "Launchbay" then
+            variant = currentShipDB["variants"]["SH2_Bombard_Launchbays"]
+        elseif shield == 2 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "boarding" then
+            variant = currentShipDB["variants"]["SH2_Torpedo_Weapons"]
+        elseif shield == 2 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "barrage" then
+            variant = currentShipDB["variants"]["SH2_Torpedo_Weapons_barr"]
+        elseif shield == 2 and prow_module == "Torpedo" and side_module == "Weapons" and torpedo == "shortburn" then
+            variant = currentShipDB["variants"]["SH2_Torpedo_Weapons_shortburn"]
+        elseif shield == 2 and prow_module == "Torpedo" and side_module == "Launchbay" and torpedo == "boarding"  then
+            variant = currentShipDB["variants"]["SH2_Torpedo_Launchbays"]
+        elseif shield == 2 and prow_module == "Torpedo" and side_module == "Launchbay" and torpedo == "barrage" then
+            variant = currentShipDB["variants"]["SH2_Torpedo_Launchbays_barr"]
+        elseif shield == 2 and prow_module == "Torpedo" and side_module == "Launchbay" and torpedo == "shortburn" then
+            variant = currentShipDB["variants"]["SH2_Torpedo_Launchbays_shortburn"]
         end
 
         if variant["edit_stats"] then
