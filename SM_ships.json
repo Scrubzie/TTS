@@ -141,6 +141,94 @@
                     {"type": "Std. Launch Bays", "firepower": 1}
                 ],
                 "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Shortburn Torpedo", "range": "40cm"}]
+            },
+            "SH2_Launchbays_Weapons": { "edit_stats": [{"shield": 2}]},
+            "SH2_Launchbays_Launchbays": {
+                "edit_stats": [{"shield": 2}],
+                "edit_weapons": [
+                    {"type": "Port Weapons Battery"}, 
+                    {"type": "Port Launch Bays", "firepower": 1},
+                    {"type": "Std. Weapons Battery"}, 
+                    {"type": "Std. Launch Bays", "firepower": 1}
+                ]
+            },
+            "SH2_Bombard_Weapons": {
+                "edit_stats": [{"shield": 2}],
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Bombardment Cannon 2", "range": "30cm", "firepower": "5", "arc": "F"}
+                ]
+            },
+            "SH2_Bombard_Launchbays": {
+                "edit_stats": [{"shield": 2}],
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Bombardment Cannon 2", "range": "30cm", "firepower": "5", "arc": "F"},
+                    {"type": "Port Weapons Battery"}, 
+                    {"type": "Port Launch Bays", "firepower": 1},
+                    {"type": "Std. Weapons Battery"}, 
+                    {"type": "Std. Launch Bays", "firepower": 1}
+                ]
+            },
+            "SH2_Torpedo_Weapons": { 
+                "edit_stats": [{"shield": 2}],
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Torpedoes", "range": "30cm", "firepower": "6", "arc": "F"}
+                ],
+                "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Boarding Torpedo", "range": "30cm"}]
+            },
+            "SH2_Torpedo_Weapons_barr": {
+                "edit_stats": [{"shield": 2}], 
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Torpedoes", "range": "30cm", "firepower": "6", "arc": "F"}
+                ],
+                "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Barrage bomb", "range": "30cm"}]
+            },
+            "SH2_Torpedo_Weapons_shortburn": {
+                "edit_stats": [{"shield": 2}], 
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Torpedoes", "range": "30cm", "firepower": "6", "arc": "F"}
+                ],
+                "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Shortburn Torpedo", "range": "40cm"}]
+            },
+            "SH2_Torpedo_Launchbays": {
+                "edit_stats": [{"shield": 2}], 
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Torpedoes", "range": "30cm", "firepower": "6", "arc": "F"},
+                    {"type": "Port Weapons Battery"}, 
+                    {"type": "Port Launch Bays", "firepower": 1},
+                    {"type": "Std. Weapons Battery"}, 
+                    {"type": "Std. Launch Bays", "firepower": 1}
+                ],
+                "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Boarding Torpedo", "range": "30cm"}]
+            },
+            "SH2_Torpedo_Launchbays_barr": {
+                "edit_stats": [{"shield": 2}], 
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Torpedoes", "range": "30cm", "firepower": "6", "arc": "F"},
+                    {"type": "Port Weapons Battery"}, 
+                    {"type": "Port Launch Bays", "firepower": 1},
+                    {"type": "Std. Weapons Battery"}, 
+                    {"type": "Std. Launch Bays", "firepower": 1}
+                ],
+                "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Barrage Bomb", "range": "30cm"}]
+            },
+            "SH2_Torpedo_Launchbays_shortburn": {
+                "edit_stats": [{"shield": 2}], 
+                "edit_weapons": [
+                    {"type": "Prow Launch Bays"},
+                    {"type": "Prow Torpedoes", "range": "30cm", "firepower": "6", "arc": "F"},
+                    {"type": "Port Weapons Battery"}, 
+                    {"type": "Port Launch Bays", "firepower": 1},
+                    {"type": "Std. Weapons Battery"}, 
+                    {"type": "Std. Launch Bays", "firepower": 1}
+                ],
+                "new_ordance": [{"type": "Torpedo", "range": "30cm"}, {"type": "Shortburn Torpedo", "range": "40cm"}]
             }
         }
     }
