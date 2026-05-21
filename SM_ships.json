@@ -75,13 +75,13 @@
             "SH1_Bombard_Weapons": {
                 "edit_weapons": [
                     {"type": "Prow Launch Bays"},
-                    {"type": "Prow Bombardment Cannon", "range": "30cm", "firepower": "5", "arc": "F"}
+                    {"type": "Prow Bombardment Cannon 2", "range": "30cm", "firepower": "5", "arc": "F"}
                 ]
             },
             "SH1_Bombard_Launchbays": {
                 "edit_weapons": [
                     {"type": "Prow Launch Bays"},
-                    {"type": "Prow Bombardment Cannon", "range": "30cm", "firepower": "5", "arc": "F"},
+                    {"type": "Prow Bombardment Cannon 2", "range": "30cm", "firepower": "5", "arc": "F"},
                     {"type": "Port Weapons Battery"}, 
                     {"type": "Port Launch Bays", "firepower": 1},
                     {"type": "Std. Weapons Battery"}, 

@@ -226,7 +226,9 @@
         end
 
         if shield == 1 and prow_module == "Launchbay" and side_module == "Weapons" then
-            variant = currentShipDB["variants"]["SH1_Launchbays_Weapons"] 
+            variant = currentShipDB["variants"]["SH1_Launchbays_Weapons"]
+        elseif shield == 1 and prow_module == "Bombard" and side_module == "Weapons" then
+            variant = currentShipDB["variants"]["SH1_Bombard_Weapons"]
         end
 
         if variant["edit_stats"] then
@@ -237,6 +239,33 @@
                     end
                 end
             end 
+        end
+
+        if variant["edit_weapons"] then
+            for _, edit in ipairs(variant["edit_weapons"]) do
+
+                -- Find existing weapon by type
+                for i = #weapons, 1, -1 do
+                    if weapons[i].type == edit.type then
+                        table.remove(weapons, i)
+                    end
+                end
+
+                -- If edit contains extra fields, insert as new weapon
+                local hasData =
+                    edit.range or
+                    edit.firepower or
+                    edit.arc
+
+                if hasData then
+                    table.insert(weapons, {
+                        type = edit.type,
+                        range = edit.range or "",
+                        firepower = edit.firepower or "",
+                        arc = edit.arc or ""
+                    })
+                end
+            end
         end
 
         if variant["new_ordance"] then
@@ -261,7 +290,7 @@
 
         local weaponsText = ""
         for _, w in ipairs(weapons) do
-            weaponsText = weaponsText .. string.format("%s | %s | %s | %s\n", w.type, w.range or "", w.firepower or "", w.arc or "")
+            weaponsText = weaponsText .. string.format("[c6c930]%s[-]\n%s | %s | %s\n", w.type, w.range or "", w.firepower or "", w.arc or "")
         end
 
         local ordnanceText = ""
@@ -270,14 +299,14 @@
         end
 
         description = string.format([[
-    [56f442]T     SP      TN  SH   ARM DF[-]
-    %s   %s   %s  %d      %s    %d
+[56f442]T     SP      TN  SH   ARM DF[-]
+%s   %s   %s  %d      %s    %d
 
-    [e85545]Armament[-]
-    %s
+[e85545]Armament[-]
+%s
 
-    [e85545]Ordnance[-]
-    %s
+[e85545]Ordnance[-]
+%s
         ]], stats.type, stats.speed, stats.turn, stats.shield, stats.armour, stats.turrets, weaponsText, ordnanceText)
 
         return description
